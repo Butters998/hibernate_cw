@@ -1,11 +1,11 @@
 package pl.faferek.hibernate_cw;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.boot.context.properties.bind.Name;
+
+import javax.persistence.*;
 
 @Entity
+@Table(name = "cars")
 public class Car {
 
     @Id
@@ -13,13 +13,15 @@ public class Car {
     private Long id;
     private String mark;
     private String model;
+    @Enumerated(EnumType.STRING)
     private Color color;
 
-    public Car( String mark, String model, Color color) {
+    public Car(String mark, String model, Color color) {
         this.mark = mark;
         this.model = model;
         this.color = color;
     }
+
     public Car() {
 
     }
@@ -54,5 +56,15 @@ public class Car {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", mark='" + mark + '\'' +
+                ", model='" + model + '\'' +
+                ", color=" + color +
+                '}';
     }
 }
